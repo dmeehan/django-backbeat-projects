@@ -56,7 +56,7 @@ class ProjectBase(models.Model):
     
     class Meta:
         abstract = True
-        ordering = ('-date_end','title',)
+        ordering = ('-date_end','name',)
 
     @permalink
     def get_absolute_url(self):
@@ -123,12 +123,12 @@ class PhysicalProjectBase(ProjectBase):
     }
 
 
-    size = models.DecimalField(decimal_places=2)
+    size = models.DecimalField(max_digits=12, decimal_places=2)
     unit = models.PositiveSmallIntegerField(choices=UNIT_CHOICES,
                                      default=UNIT_SQUAREFOOT,
                                      help_text="Unit of measurement.")
 
-    size_normalized = models.DecimalField(decimal_places=2, editable=False)
+    size_normalized = models.DecimalField(max_digits=12, decimal_places=2, editable=False)
 
     def convert(self, someUnit):
         if someUnit == self.unit:
