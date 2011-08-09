@@ -1,6 +1,5 @@
 # projects/models.py
 
-from django.contrib.markup.templatetags import markup
 from django.db import models
 from django.db.models import permalink
 from django.utils.html import strip_tags
@@ -70,11 +69,11 @@ class ProjectBase(models.Model):
         original = self.description_html
 
         if PROJECT_MARKUP == 'markdown':
-            self.description_html = markup.markdown(self.description)
-        elif PROJECT_MARKUP == 'restructured_text':
-            self.description_html = markup.restructuredtext(self.description)
+            import markdown
+            self.description_html = markdown.markdown(self.description)
         elif PROJECT_MARKUP == 'textile':
-            self.description_html = markup.textile(self.description)
+            import textile
+            self.description_html = textile.textile(self.description)
         elif PROJECT_MARKUP == 'wysiwyg':
             self.description_html = self.description
         elif PROJECT_MARKUP == 'html':
