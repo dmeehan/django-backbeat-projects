@@ -1,5 +1,7 @@
 # projects/models.py
 
+from decimal import *
+
 from django.db import models
 from django.db.models import permalink
 from django.utils.html import strip_tags
@@ -109,18 +111,18 @@ class PhysicalProjectBase(ProjectBase):
     )
     
     UNIT_CONVERSIONS = {
-        (UNIT_SQUAREFOOT, UNIT_SQUAREMETER): .0929,
-        (UNIT_SQUAREFOOT, UNIT_ACRE): .000023,
-        (UNIT_SQUAREFOOT, UNIT_HECTARE): .0000093,
-        (UNIT_SQUAREMETER, UNIT_SQUAREFOOT): 10.76,
-        (UNIT_SQUAREMETER, UNIT_ACRE): .00025,
-        (UNIT_SQUAREMETER, UNIT_HECTARE): .0001,
-        (UNIT_ACRE, UNIT_SQUAREFOOT): 43560,
-        (UNIT_ACRE, UNIT_SQUAREMETER): 4047,
-        (UNIT_ACRE, UNIT_HECTARE): .4047,
-        (UNIT_HECTARE, UNIT_SQUAREFOOT): 107639.10,
-        (UNIT_HECTARE, UNIT_SQUAREMETER): 10000.00,
-        (UNIT_HECTARE, UNIT_ACRE): 2.47,
+        (UNIT_SQUAREFOOT, UNIT_SQUAREMETER): Decimal(.0929),
+        (UNIT_SQUAREFOOT, UNIT_ACRE): Decimal(.000023),
+        (UNIT_SQUAREFOOT, UNIT_HECTARE): Decimal(.0000093),
+        (UNIT_SQUAREMETER, UNIT_SQUAREFOOT): Decimal(10.76),
+        (UNIT_SQUAREMETER, UNIT_ACRE): Decimal(.00025),
+        (UNIT_SQUAREMETER, UNIT_HECTARE): Decimal(.0001),
+        (UNIT_ACRE, UNIT_SQUAREFOOT): Decimal(43560),
+        (UNIT_ACRE, UNIT_SQUAREMETER): Decimal(4047),
+        (UNIT_ACRE, UNIT_HECTARE): Decimal(.4047),
+        (UNIT_HECTARE, UNIT_SQUAREFOOT): Decimal(107639.10),
+        (UNIT_HECTARE, UNIT_SQUAREMETER): Decimal(10000.00),
+        (UNIT_HECTARE, UNIT_ACRE): Decimal(2.47),
     }
 
 
