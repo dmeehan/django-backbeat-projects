@@ -136,9 +136,9 @@ class PhysicalProjectBase(ProjectBase):
 
     def convert(self, someUnit):
         if someUnit == self.unit:
-            return self.unit
+            return self.size
         elif (self.unit, someUnit) in self.UNIT_CONVERSIONS:
-            return self.unit * self.UNIT_CONVERSIONS[(self.unit, someUnit)]
+            return self.size * self.UNIT_CONVERSIONS[(self.unit, someUnit)]
         else:
             raise Exception("Can't convert")
 
