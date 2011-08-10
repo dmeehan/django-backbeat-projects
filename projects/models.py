@@ -140,7 +140,7 @@ class PhysicalProjectBase(ProjectBase):
         elif (someUnit,self.unit) in self.UNIT_CONVERSIONS:
             return self.unit * self.UNIT_CONVERSIONS[(someUnit,self.unit)]
         else:
-            raise Exception( "Can't convert" )
+            raise Exception("Can't convert")
 
     @property
     def square_feet(self):
