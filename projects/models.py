@@ -137,8 +137,8 @@ class PhysicalProjectBase(ProjectBase):
     def convert(self, someUnit):
         if someUnit == self.unit:
             return self.unit
-        elif (someUnit,self.unit) in self.UNIT_CONVERSIONS:
-            return self.unit * self.UNIT_CONVERSIONS[(someUnit,self.unit)]
+        elif (someUnit,self.unit) in UNIT_CONVERSIONS:
+            return self.unit * UNIT_CONVERSIONS[(someUnit,self.unit)]
         else:
             raise Exception("Can't convert")
 
@@ -159,7 +159,7 @@ class PhysicalProjectBase(ProjectBase):
         return self.convert(self.UNIT_HECTARE)
 
     def save(self, force_insert=False, force_update=False):
-        self.size_nomalized = self.convert(self.UNIT_SQUAREFOOT)
+        self.size_normalized = self.convert(self.UNIT_SQUAREFOOT)
         super(PhysicalProjectBase, self).save(force_insert, force_update)
     
 
