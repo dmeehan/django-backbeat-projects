@@ -131,6 +131,9 @@ class PhysicalProjectBase(ProjectBase):
 
     size_normalized = models.DecimalField(max_digits=12, decimal_places=2, editable=False)
 
+    class Meta:
+        abstract = True
+
     def convert(self, someUnit):
         if someUnit == self.unit:
             return self.unit
