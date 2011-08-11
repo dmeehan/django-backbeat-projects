@@ -63,7 +63,7 @@ class ProjectBase(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('contacts_contact_detail', [str(self.slug)])
+        return ('projects_project_detail', [str(self.slug)])
         
     def __unicode__(self):
         return u'%s' % self.name
@@ -92,10 +92,11 @@ class ProjectBase(models.Model):
         super(ProjectBase, self).save(force_insert, force_update)
         
     
-class PhysicalProjectBase(ProjectBase):
+class PhysicalMixin(models.Model):
     """
 
-        A physcially constructable design project. Abstract base model.
+        Fields and methods for a
+        physically constructable design project.
 
     """
     # project size unit choices
@@ -126,21 +127,21 @@ class PhysicalProjectBase(ProjectBase):
     }
 
 
-    size = models.DecimalField(max_digits=12, decimal_places=2)
+    area = models.DecimalField(max_digits=12, decimal_places=2)
     unit = models.PositiveSmallIntegerField(choices=UNIT_CHOICES,
                                      default=UNIT_SQUAREFOOT,
                                      help_text="Unit of measurement.")
 
-    size_normalized = models.DecimalField(max_digits=12, decimal_places=2, editable=False)
+    area_normalized = models.DecimalField(max_digits=12, decimal_places=2, editable=False)
 
     class Meta:
         abstract = True
 
     def convert(self, someUnit):
         if someUnit == self.unit:
-            return self.size
+            return self.area
         elif (self.unit, someUnit) in self.UNIT_CONVERSIONS:
-            return self.size * self.UNIT_CONVERSIONS[(self.unit, someUnit)]
+            return self.area * self.UNIT_CONVERSIONS[(self.unit, someUnit)]
         else:
             raise Exception("Can't convert")
 
@@ -161,7 +162,15 @@ class PhysicalProjectBase(ProjectBase):
         return self.convert(self.UNIT_HECTARE)
 
     def save(self, force_insert=False, force_update=False):
-        self.size_normalized = self.convert(self.UNIT_SQUAREFOOT)
-        super(PhysicalProjectBase, self).save(force_insert, force_update)
+        self.area_normalized = self.convert(self.UNIT_SQUAREFOOT)
+        super(PhysicalMixin, self).save(force_insert, force_update)
     
 
+class PhysicalProjectBase(ProjectBase, PhysicalMixin):
+    """
+
+        An abstract base model for a
+        physically constructable design project.
+
+    """
+    pass
