@@ -1,6 +1,6 @@
 # projects/models.py
 
-from decimal import *
+from decimal import Decimal
 
 from django.db import models
 from django.db.models import permalink
