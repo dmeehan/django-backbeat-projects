@@ -3,7 +3,7 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
 
-from projects.conf import settings
+from projects.settings import PROJECT_MODEL
 
 project_model = get_model(*settings.PROJECT_MODEL.split('.'))
 
