@@ -3,7 +3,7 @@
 from django.db.models import get_model
 from django.views.generic import ListView, DetailView, ArchiveIndexView
 
-from projects.settings import PROJECT_MODEL, PROJECT_PAGINATE_BY
+from projects.settings import (PROJECT_MODEL, PROJECT_PAGINATE_BY,)
 
 project_model = get_model(*PROJECT_MODEL.split('.'))
 
