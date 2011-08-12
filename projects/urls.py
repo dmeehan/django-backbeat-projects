@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.defaults import *
 from django.db.models import get_model
 
-from projects.settings import PROJECT_MODEL
+from settings import (PROJECTS_SETTINGS,)
 
 project_model = get_model(*settings.PROJECT_MODEL.split('.'))
 
