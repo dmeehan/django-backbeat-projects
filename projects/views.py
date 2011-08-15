@@ -11,7 +11,7 @@ class ProjectDetailView(DetailView):
 class ProjectListView(ListView):
     #queryset = project_model._default_manager.live()
     context_object_name="project_list",
-    paginate_by = PROJECT_PAGINATE_BY
+    #paginate_by = PROJECT_PAGINATE_BY
     template = '/projects/project_list.html'
 
 class ProjectSizeAscListView(ProjectListView):
