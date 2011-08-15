@@ -2,6 +2,7 @@
 
 from decimal import Decimal
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import permalink
 from django.utils.html import strip_tags
@@ -30,6 +31,7 @@ class ProjectBase(models.Model):
     )
     
     # Core fields
+    user = models.ForeignKey(User, blank=True, null=True)
     name = models.CharField(max_length=250)
     short_description = models.TextField()
     description = models.TextField()

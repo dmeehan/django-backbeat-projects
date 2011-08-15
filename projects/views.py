@@ -1,32 +1,35 @@
 # projects/views.py
 
 from django.db.models import get_model
-from django.views.generic import ListView, DetailView, ArchiveIndexView
+from django.views.generic import ListView, DetailView
 
-from settings import (PROJECTS_MODEL, PROJECT_PAGINATE_BY)
-
-project_model = get_model(*PROJECT_MODEL.split('.'))
 
 class ProjectDetailView(DetailView):
-    queryset = project_model._default_manager.live()
+    pass
+        
 
 class ProjectListView(ListView):
-    queryset = project_model._default_manager.live()
+    #queryset = project_model._default_manager.live()
     context_object_name="project_list",
     paginate_by = PROJECT_PAGINATE_BY
     template = '/projects/project_list.html'
 
 class ProjectSizeAscListView(ProjectListView):
-    queryset = project_model._default_manager.live().size_asc()
+    pass
+    #queryset = project_model._default_manager.live().size_asc()
 
 class ProjectSizeDescListView(ProjectListView):
-    queryset = project_model._default_manager.live().size_desc()
+    pass
+    #queryset = project_model._default_manager.live().size_desc()
 
 class ProjectDateListView(ProjectListView):
-    queryset = project_model._default_manager.live()
+    pass
+    #queryset = project_model._default_manager.live()
 
 class ProjectCurrentListView(ProjectListView):
-    queryset = project_model._default_manager.live().current()
+    pass
+    #queryset = project_model._default_manager.live().current()
 
 class ProjectCompletedListView(ProjectListView):
-    queryset = project_model._default_manager.live().completed()
+    pass
+    #queryset = project_model._default_manager.live().completed()
